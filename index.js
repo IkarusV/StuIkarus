@@ -2104,8 +2104,10 @@ var init_config = __esm({
         mobile: 40
       },
       chatu8_fab_position: {
-        desktop: { top: "65vh", left: "20px" },
-        mobile: { top: "80vh", left: "10px" }
+        // Center the floating launcher by default on both desktop and mobile.
+        // Pixel coordinates are calculated after the element has rendered.
+        desktop: { top: "50vh", left: "50vw", centered: true },
+        mobile: { top: "50vh", left: "50vw", centered: true }
       },
       chatu8_fab_video_paths: {
         idle: `${extensionFolderPath}/html/settings/idle.chatu8`,
@@ -9522,8 +9524,16 @@ function applyFabSettings() {
       applyFabIconImage(fab, settings3, size);
     }
     const position = isMobile3 ? settings3.chatu8_fab_position.mobile || defaultSettings.chatu8_fab_position.mobile : settings3.chatu8_fab_position.desktop || defaultSettings.chatu8_fab_position.desktop;
-    fab.css("top", position.top);
-    fab.css("left", position.left);
+    if (position.centered === true) {
+      // Store an actual top-left position so dragging continues to work without
+      // mixing CSS transforms with the drag calculations.
+      const centeredLeft = Math.max(0, (window.innerWidth - size) / 2);
+      const centeredTop = Math.max(0, (window.innerHeight - size) / 2);
+      fab.css({ top: `${centeredTop}px`, left: `${centeredLeft}px` });
+    } else {
+      fab.css("top", position.top);
+      fab.css("left", position.left);
+    }
   } else {
     fab.hide();
     if (globalVideoPlayer) {
@@ -12057,9 +12067,11 @@ function initFab() {
       if (isMobile3) {
         settings3.chatu8_fab_position.mobile.top = fab.style.top;
         settings3.chatu8_fab_position.mobile.left = fab.style.left;
+        settings3.chatu8_fab_position.mobile.centered = false;
       } else {
         settings3.chatu8_fab_position.desktop.top = fab.style.top;
         settings3.chatu8_fab_position.desktop.left = fab.style.left;
+        settings3.chatu8_fab_position.desktop.centered = false;
       }
       saveSettingsDebounced5();
     }
@@ -85940,26 +85952,48 @@ async function main() {
   initializeNewlineFixer();
   initializeTTS();
   initializeASR();
-  setTimeout(addNewElement, 2e3);
+  // SillyTavern may render the Extensions menu late on mobile. Retry for up
+  // to one minute so the permanent launcher is not dependent on timing.
+  let permanentButtonAttempts = 0;
+  const permanentButtonTimer = setInterval(() => {
+    permanentButtonAttempts += 1;
+    if (addNewElement() || permanentButtonAttempts >= 30) {
+      clearInterval(permanentButtonTimer);
+    }
+  }, 2e3);
+  addNewElement();
   setInterval(chenk, 4e3);
   await checkForUpdates2();
 }
 function addNewElement() {
+  if (document.getElementById("option_toggle_AN88")) return true;
   const targetElement = document.querySelector("#option_toggle_AN");
   if (targetElement) {
     if (!document.getElementById("option_toggle_AN88")) {
       const newElement = document.createElement("a");
       newElement.id = "option_toggle_AN88";
+      newElement.href = "#";
+      newElement.title = "Open st-chatu8 image settings";
+      newElement.setAttribute("role", "button");
+      newElement.setAttribute("aria-label", "Open st-chatu8 image settings");
       const icon = document.createElement("i");
       icon.className = "fa-lg fa-solid fa-note-sticky";
       newElement.appendChild(icon);
       const span = document.createElement("span");
-      span.setAttribute("data-i18n", "\u6253\u5F00\u8BBE\u7F6E");
-      span.textContent = "\u6253\u5F00\u6587\u751F\u56FE\u8BBE\u7F6E";
+      span.textContent = "Open image-generation settings";
       newElement.appendChild(span);
       targetElement.parentNode.insertBefore(newElement, targetElement.nextSibling);
       console.log("chatu settings button added.");
-      document.getElementById("option_toggle_AN88").addEventListener("click", window.showChatuSettingsPanel);
+      document.getElementById("option_toggle_AN88").addEventListener("click", (event) => {
+        event.preventDefault();
+        if (typeof window.showChatuSettingsPanel === "function") {
+          window.showChatuSettingsPanel();
+        } else {
+          showSettingsPanel();
+        }
+      });
     }
+    return true;
   }
+  return false;
 }
