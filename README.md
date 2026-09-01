@@ -85,6 +85,10 @@ This fork retains the original project's [Aladdin Free Public License](LICENSE).
 Review its terms before redistributing or using this project commercially.
 
 
-## Mobile launcher access
+## Mobile Launcher Access
 
-The floating launcher defaults to the center of the viewport on desktop and mobile. Dragging it saves a device-specific position. A permanent **Open image-generation settings** entry is also added beside SillyTavern’s Extensions menu control, so the settings remain accessible if the floating launcher is hidden or obstructed.
+The floating launcher defaults to the center of the viewport on desktop and
+mobile. Dragging it saves a device-specific position. A permanent **Stu** entry
+is also added to both SillyTavern's three-bar options menu and wand Extensions
+menu. Either entry opens the complete settings interface even if the floating
+launcher is disabled, hidden, or obstructed.

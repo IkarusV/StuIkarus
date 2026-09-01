@@ -85952,48 +85952,84 @@ async function main() {
   initializeNewlineFixer();
   initializeTTS();
   initializeASR();
-  // SillyTavern may render the Extensions menu late on mobile. Retry for up
-  // to one minute so the permanent launcher is not dependent on timing.
-  let permanentButtonAttempts = 0;
-  const permanentButtonTimer = setInterval(() => {
-    permanentButtonAttempts += 1;
-    if (addNewElement() || permanentButtonAttempts >= 30) {
-      clearInterval(permanentButtonTimer);
+  // SillyTavern may render the wand menu late, especially on mobile. Keep
+  // retrying until both permanent access points have been installed.
+  let launcherAttempts = 0;
+  const launcherTimer = setInterval(() => {
+    launcherAttempts += 1;
+    if (addStuLaunchers() || launcherAttempts >= 60) {
+      clearInterval(launcherTimer);
     }
-  }, 2e3);
-  addNewElement();
+  }, 1e3);
+  addStuLaunchers();
   setInterval(chenk, 4e3);
   await checkForUpdates2();
 }
-function addNewElement() {
-  if (document.getElementById("option_toggle_AN88")) return true;
-  const targetElement = document.querySelector("#option_toggle_AN");
-  if (targetElement) {
-    if (!document.getElementById("option_toggle_AN88")) {
-      const newElement = document.createElement("a");
-      newElement.id = "option_toggle_AN88";
-      newElement.href = "#";
-      newElement.title = "Open st-chatu8 image settings";
-      newElement.setAttribute("role", "button");
-      newElement.setAttribute("aria-label", "Open st-chatu8 image settings");
-      const icon = document.createElement("i");
-      icon.className = "fa-lg fa-solid fa-note-sticky";
-      newElement.appendChild(icon);
-      const span = document.createElement("span");
-      span.textContent = "Open image-generation settings";
-      newElement.appendChild(span);
-      targetElement.parentNode.insertBefore(newElement, targetElement.nextSibling);
-      console.log("chatu settings button added.");
-      document.getElementById("option_toggle_AN88").addEventListener("click", (event) => {
-        event.preventDefault();
-        if (typeof window.showChatuSettingsPanel === "function") {
-          window.showChatuSettingsPanel();
-        } else {
-          showSettingsPanel();
-        }
-      });
-    }
-    return true;
+function openStuSettings(event) {
+  event?.preventDefault();
+  if (typeof window.showChatuSettingsPanel === "function") {
+    window.showChatuSettingsPanel();
+  } else {
+    showSettingsPanel();
   }
-  return false;
+}
+function addStuLaunchers() {
+  document.getElementById("option_toggle_AN88")?.remove();
+  const optionsContainer = document.querySelector("#options .options-content");
+  if (optionsContainer && !document.getElementById("stu-options-launcher")) {
+    const optionsLauncher = document.createElement("a");
+    optionsLauncher.id = "stu-options-launcher";
+    optionsLauncher.href = "#";
+    optionsLauncher.title = "Open Stu settings";
+    optionsLauncher.setAttribute("role", "button");
+    optionsLauncher.setAttribute("aria-label", "Open Stu settings");
+    const icon = document.createElement("i");
+    icon.className = "fa-lg fa-solid fa-wand-magic-sparkles";
+    const label = document.createElement("span");
+    label.textContent = "Stu";
+    optionsLauncher.append(icon, label);
+    optionsLauncher.addEventListener("click", openStuSettings);
+    const authorsNoteLauncher = document.getElementById("option_toggle_AN");
+    if (authorsNoteLauncher?.parentElement === optionsContainer) {
+      authorsNoteLauncher.insertAdjacentElement("afterend", optionsLauncher);
+    } else {
+      optionsContainer.prepend(optionsLauncher);
+    }
+  }
+  const wandContainer = document.getElementById("extensionsMenu");
+  if (wandContainer && !document.getElementById("stu-wand-launcher")) {
+    const wandLauncher = document.createElement("div");
+    wandLauncher.id = "stu-wand-launcher";
+    wandLauncher.className = "list-group-item flex-container flexGap5";
+    wandLauncher.title = "Open Stu settings";
+    wandLauncher.setAttribute("role", "button");
+    wandLauncher.setAttribute("aria-label", "Open Stu settings");
+    wandLauncher.tabIndex = 0;
+    const icon = document.createElement("div");
+    icon.className = "fa-solid fa-wand-magic-sparkles extensionsMenuExtensionButton";
+    const label = document.createElement("span");
+    label.textContent = "Stu";
+    wandLauncher.append(icon, label);
+    wandLauncher.addEventListener("click", openStuSettings);
+    wandLauncher.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") openStuSettings(event);
+    });
+    // The wand menu opens upward, so the last item stays closest to its button
+    // even when many other extensions make the menu taller than the viewport.
+    wandContainer.append(wandLauncher);
+  }
+  const wandLauncher = document.getElementById("stu-wand-launcher");
+  if (wandContainer && wandLauncher && wandContainer.lastElementChild !== wandLauncher) {
+    wandContainer.append(wandLauncher);
+  }
+  if (wandContainer && !window.stuWandMenuObserver) {
+    window.stuWandMenuObserver = new MutationObserver(() => {
+      const launcher = document.getElementById("stu-wand-launcher");
+      if (launcher && wandContainer.lastElementChild !== launcher) {
+        wandContainer.append(launcher);
+      }
+    });
+    window.stuWandMenuObserver.observe(wandContainer, { childList: true });
+  }
+  return !!document.getElementById("stu-options-launcher") && !!document.getElementById("stu-wand-launcher");
 }
