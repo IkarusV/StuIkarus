@@ -1,0 +1,226 @@
+<div id="ch-tab-sd">
+    <div class="ch-prompts-section st-chatu8-settings-section">
+        <h3>Fixed Prompts</h3>
+        <div class="st-chatu8-field">
+            <label for="yusheid">Prompt Preset</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="yusheid" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_visual_select" title="Visual selection"><i class="fa-solid fa-grip"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_update_style" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_save_style" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_current" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_all" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st_chatu8_tishici_delete_style" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt">Fixed Positive Prompt <span class="st-chatu8-unsaved-warning" title="Unsaved changes" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt" title="Translate" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="fixedPrompt-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_end">Postfixed Positive Prompt <span class="st-chatu8-unsaved-warning" title="Unsaved changes" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end" title="Translate" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_end" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="fixedPrompt_end-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="negativePrompt">Fixed Negative Prompt <span class="st-chatu8-unsaved-warning" title="Unsaved changes" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="negativePrompt" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="negativePrompt-results" class="ch-autocomplete-results"></div>
+        </div>
+        <h3>LORA</h3>
+        <div class="st-chatu8-field">
+            <label for="sd_cchatu_8_lora">Add LoRA</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="sd_cchatu_8_lora" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="sd_add_lora" title="Add"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+        <div class="st-chatu8-settings-section"> 
+        <h3>Prompt Replacement</h3>
+
+        <div class="st-chatu8-field">
+            <label for="prompt_replace_id">Prompt Replacement</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="prompt_replace_id" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_update_style" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_save_style" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_current" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_all" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="prompt_replace_delete_style" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="prompt_replace_text">Replacement Rules <span class="st-chatu8-unsaved-warning" title="Unsaved changes" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="prompt_replace_text" class="st-chatu8-textarea" rows="4"></textarea>
+        </div>
+    </div>
+        <div class="st-chatu8-settings-section"> 
+        <div class="st-chatu8-field">
+            <label for="AQT_sd">Positive Quality Preset</label>
+            <select id="AQT_sd" class="st-chatu8-select">
+                <option value="best quality, amazing quality, very aesthetic, absurdres">Enable</option>
+                <option value="">Disable</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="UCP_sd">Negative Quality Preset</label>
+            <select id="UCP_sd" class="st-chatu8-select">
+<option value="">None</option>
+<option value="bad proportions, out of focus, username, text, bad anatomy, lowres, worstquality, watermark, cropped, bad body, deformed, mutated, disfigured, poorly drawn face, malformed hands, extra arms, extra limb, missing limb, too many fingers, extra legs, bad feet, missing fingers, fused fingers, acnes, floating limbs, disconnected limbs, long neck, long body, mutation, ugly, blurry, low quality, sketches, normal quality, monochrome, grayscale, signature, logo, jpeg artifacts, unfinished, displeasing, chromatic aberration, extra digits, artistic error, scan, abstract, photo, realism, screencap">Author Preset</option>
+<option value="negativeXL_D, negativeXL, source_furry, extra limbs, deformations, long fingers, fused fingers, inaccurate_anatomy, bad proportions, poorly drawn hands, bad hands, extra_fingers, extra_hand, extra_arm, distorted fingers, ugly hands, creepy hands, six fingers, malformed fingers, long_fingers, interlocked fingers:1.2, ugly, deformed, uneven, asymmetrical, unnatural, missing fingers, extra digit, fewer digits, opaque eyes, small eyes, ugly eyes, blurred eyes, bad face, (bad anatomy, ugly face:1.2), (worst quality, low quality, not detailed, low resolution:1.2), motion_blur, blur, blur_censor, blurry, simple_background, text, error, cropped, normal quality, jpeg artifacts, watermark, logo, signature, username, artist name">Author Preset 2</option>
+            </select>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Stable Diffusion Settings</h3>
+        <div class="st-chatu8-field">
+            <label for="sdUrl">A1111-Compatible API Base URL <small>(Magimo: use its SD API gateway URL, not a ComfyUI-only endpoint)</small></label>
+            <div class="st-chatu8-input-group">
+                <i class="fa-solid fa-exclamation-triangle st-chatu8-url-warning-icon" title="Invalid URL format"></i>
+                <input type="text" id="sdUrl" class="st-chatu8-text-input" placeholder="https://comfy.magimo.vn">
+                <button id="testSd" class="st-chatu8-btn">Connect and Refresh</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_auth_type">Authentication type</label>
+            <select id="sd_auth_type" class="st-chatu8-select">
+                <option value="bearer">Bearer API key (Magimo/cloud)</option>
+                <option value="basic">Basic username/password (local A1111)</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_api_key">Cloud API key</label>
+            <input type="password" id="sd_api_key" class="st-chatu8-text-input" autocomplete="off" placeholder="Enter your Magimo/cloud API key">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st_chatu8_sd_auth">Basic authentication</label>
+            <input type="password" id="st_chatu8_sd_auth" class="st-chatu8-text-input" autocomplete="off" placeholder="username:password">
+        </div>
+    </div>
+        <div class="st-chatu8-settings-section">
+        <h4>Other Settings</h4>
+        
+            <div class="st-chatu8-field">
+                <label for="sd_cchatu_8_model">Model</label>
+                <select id="sd_cchatu_8_model" class="st-chatu8-select"></select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_cchatu_8_vae">VAE</label>
+                <select id="sd_cchatu_8_vae" class="st-chatu8-select"></select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_cchatu_8_samplerName">Sampler</label>
+                <select id="sd_cchatu_8_samplerName" class="st-chatu8-select"></select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_cchatu_8_scheduler">Scheduler</label>
+                <select id="sd_cchatu_8_scheduler" class="st-chatu8-select"></select>
+            </div>
+
+        </div>
+        
+            <div class="st-chatu8-settings-section">
+                <h4>Generation Parameters</h4>
+                <div class="st-chatu8-grid">
+                    <div class="st-chatu8-field">
+                        <label for="sd_csize">Preset Resolution</label>
+                        <select id="sd_csize" class="st-chatu8-select">
+                            <option value="1024x1024">1024x1024 (1:1, SDXL)</option>
+                            <option value="1152x896">1152x896 (9:7, SDXL)</option>
+                            <option value="896x1152">896x1152 (7:9, SDXL)</option>
+                            <option value="1216x832">1216x832 (19:13, SDXL)</option>
+                            <option value="832x1216">832x1216 (13:19, SDXL)</option>
+                            <option value="1344x768">1344x768 (7:4, SDXL)</option>
+                            <option value="768x1344">768x1344 (4:7, SDXL)</option>
+                            <option value="1536x640">1536x640 (12:5, SDXL)</option>
+                            <option value="640x1536">640x1536 (5:12, SDXL)</option>
+                        </select>
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_cwidth">Width</label>
+                        <input type="number" id="sd_cwidth" class="st-chatu8-text-input" min="64" max="2048" step="8">
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_cheight">Height</label>
+                        <input type="number" id="sd_cheight" class="st-chatu8-text-input" min="64" max="2048" step="8">
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_csteps">Steps</label>
+                        <input type="number" id="sd_csteps" class="st-chatu8-text-input">
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sdCfgScale">CFG Scale</label>
+                        <input type="number" id="sdCfgScale" class="st-chatu8-text-input">
+                    </div>
+
+                    <div class="st-chatu8-field">
+                        <label for="sd_cclip_skip">CLIP Skip</label>
+                        <input type="number" id="sd_cclip_skip" class="st-chatu8-text-input">
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_cseed">Seed</label>
+                        <input type="number" id="sd_cseed" class="st-chatu8-text-input" value="-1">
+                    </div>
+
+                </div>
+                </div>
+                    <div class="st-chatu8-settings-section">
+                        <h4>High-Res Fix</h4>
+                     <div class="st-chatu8-field">
+                            <label for="sd_chires_fix">Enable High-Res Fix</label>
+                            <div class="st-chatu8-toggle">
+                                <input id="sd_chires_fix" type="checkbox"/>
+                                <span class="st-chatu8-slider"></span>
+                            </div>
+                        </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_chires_steps">High-Res Steps</label>
+                        <input type="number" id="sd_chires_steps" class="st-chatu8-text-input">
+                    </div>    
+                    <div class="st-chatu8-field">
+                        <label for="sd_cchatu_8_upscaler">Upscaler</label>
+                        <select id="sd_cchatu_8_upscaler" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_cupscale_factor">Upscale Factor</label>
+                        <input type="number" id="sd_cupscale_factor" class="st-chatu8-text-input">
+                    </div>
+                    
+                    <div class="st-chatu8-field">
+                        <label for="sd_cdenoising_strength">Denoising Strength</label>
+                        <input type="number" id="sd_cdenoising_strength" class="st-chatu8-text-input" step="0.1">
+                    </div>
+                   </div>
+               
+           
+
+                <div class="st-chatu8-settings-section">
+                    <h4>Restoration</h4>
+
+                    <div class="st-chatu8-field">
+                        <label for="restoreFaces">Restore Faces</label>
+                        <div class="st-chatu8-toggle">
+                            <input id="restoreFaces" type="checkbox"/>
+                            <span class="st-chatu8-slider"></span>
+                        </div>
+                    </div>
+                    <div class="st-chatu8-field">
+                        <label for="sd_cadetailer">Use ADetailer (Faces)</label>
+                        <div class="st-chatu8-toggle">
+                            <input id="sd_cadetailer" type="checkbox"/>
+                            <span class="st-chatu8-slider"></span>
+                        </div>
+                    </div> 
+               </div>
+            
+            </div>

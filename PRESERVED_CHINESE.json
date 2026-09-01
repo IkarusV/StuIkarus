@@ -1,0 +1,5 @@
+{
+  "replacementModes": ["前置前", "前置后", "替换", "替换分角色", "后置前", "后置后", "最后置"],
+  "templateTokens": ["{{角色启用列表}}", "{{通用角色启用列表}}", "{{通用服装启用列表}}", "{{userpersona}}", "{{楼层信息}}"],
+  "preservationRule": "These values are parser-facing, persisted, or prompt-injected data. Do not translate them without a corresponding implementation migration."
+}

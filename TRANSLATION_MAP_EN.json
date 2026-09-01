@@ -1,0 +1,23 @@
+{
+  "提示词": "Prompt",
+  "预设": "Preset",
+  "配置档案": "Configuration Profile",
+  "世界书": "World Info",
+  "资料库": "Knowledge Base",
+  "人设": "Persona",
+  "角色": "Character",
+  "服装": "Outfit",
+  "修图": "Image Editing",
+  "生图": "Image Generation",
+  "正则": "Regex",
+  "词库": "Vocabulary",
+  "悬浮球": "Floating Button",
+  "启用": "Enable",
+  "禁用": "Disable",
+  "导入": "Import",
+  "导出": "Export",
+  "另存为": "Save As",
+  "刷新": "Refresh",
+  "全选": "Select All",
+  "取消全选": "Deselect All"
+}

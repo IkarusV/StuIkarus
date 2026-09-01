@@ -1,0 +1,477 @@
+<div id="ch-tab-knowledgeBase">
+    <!-- 子导航 -->
+    <div class="st-chatu8-sub-nav">
+        <a href="#" class="st-chatu8-sub-nav-link active" data-sub-tab="ch-sub-tab-kb-entries">Knowledge Base</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-kb-persona">Persona Management</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-kb-user">User Management</a>
+    </div>
+
+    <!-- ===== 资料库管理子标签页（新版：世界书选择 UI） ===== -->
+    <div id="ch-sub-tab-kb-entries" class="st-chatu8-sub-tab-content" style="display: block;">
+
+        <!-- 全局开关 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Knowledge Base</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-kb2-enabled">Enable Knowledge Base</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-kb2-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-kb2-trigger-depth">Trigger Depth</label>
+                <input type="number" id="ch-kb2-trigger-depth" class="st-chatu8-text-input"
+                    min="0" max="20" step="1" style="width:80px;" value="1" />
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-kb2-skip-constant">Skip Always-On Entries</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-kb2-skip-constant" type="checkbox" checked />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                Trigger Depth 0: Uses only the latest user message for keyword matching.<br>
+                Depth 1: Uses the latest user message plus the previous AI response (two messages total), and so on.<br>
+                Higher depths trigger more World Info entries but take slightly longer to process.<br>
+                When enabled, matching World Info entry content is automatically injected into the AI prompt.<br>
+                This is completely independent of the selection state in "Send Data".<br>
+                <b>Skip Always-On Entries</b>: When enabled, the knowledge base retrieves only "Force-Enabled" and keyword-triggered entries, ignoring entries that are only always-on unless they also match a trigger keyword.
+            </p>
+        </div>
+
+
+        <!-- 世界书 + 条目双栏选择（仿 send_data 风格，独立 ID 前缀 ch-kb2-） -->
+        <div class="st-chatu8-settings-section" id="ch-kb2-selector-section">
+
+            <div class="st-chatu8-send-data-layout">
+                <!-- 左栏：世界书列表 -->
+                <div class="st-chatu8-send-data-left">
+                    <div class="st-chatu8-list-header">
+                        <h3>📚 World Info</h3>
+                        <div class="st-chatu8-field">
+                            <input type="text" id="ch-kb2-world-search" class="st-chatu8-text-input"
+                                placeholder="Search World Info..." />
+                        </div>
+                        <div class="st-chatu8-batch-buttons">
+                            <button id="ch-kb2-refresh-worlds" class="st-chatu8-batch-button">
+                                <i class="fa fa-refresh"></i> Refresh World Info
+                            </button>
+                            <button id="ch-kb2-test-trigger" class="st-chatu8-batch-button">
+                                <i class="fa fa-flask"></i> Test Trigger
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ch-kb2-world-list" class="st-chatu8-send-data-list">
+                        <div style="padding:10px; color:#888;">Click Refresh to load the World Info list.</div>
+                    </div>
+                </div>
+
+                <!-- 右栏：条目列表 -->
+                <div class="st-chatu8-send-data-right">
+                    <div class="st-chatu8-list-header">
+                        <h3>📝 Entry Toggles</h3>
+                        <div class="st-chatu8-field">
+                            <input type="text" id="ch-kb2-entry-search" class="st-chatu8-text-input"
+                                placeholder="Search entries..." />
+                        </div>
+                        <!-- 批量操作按钮 -->
+                        <div class="st-chatu8-batch-buttons">
+                            <button id="ch-kb2-select-all" class="st-chatu8-batch-button">Select All</button>
+                            <button id="ch-kb2-deselect-all" class="st-chatu8-batch-button">Deselect All</button>
+                        </div>
+                    </div>
+                    <div id="ch-kb2-entry-list" class="st-chatu8-send-data-list">
+                        <div style="padding:10px; color:#888;">Select a World Info entry on the left first.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== User管理子标签页 ===== -->
+    <div id="ch-sub-tab-kb-user" class="st-chatu8-sub-tab-content" style="display: none;">
+
+        <!-- 预设管理栏 -->
+        <div class="st-chatu8-settings-section">
+            <h4>User Presets</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-user-preset-id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-user-preset-id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="ch-user-new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-save" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-save-as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-export-all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-user-import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="ch-user-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <input type="file" id="ch-user-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 全局控制区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>User Persona Controls</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-user-enabled">Enable User Persona Injection</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-user-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                User persona content is injected directly into the system prompt and is always visible to the AI.<br>
+                Note: User personas and character personas share the same preset pool. Use the template variable <code>{{userpersona}}</code> to inject it.
+            </p>
+        </div>
+
+        <!-- 头像上传区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Avatar Settings</h4>
+            <div class="st-chatu8-avatar-upload-area">
+                <div class="st-chatu8-avatar-preview" id="ch-user-avatar-preview">
+                    <img id="ch-user-avatar-img" src="" alt="Avatar preview" />
+                    <div class="st-chatu8-avatar-placeholder">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Click to upload an avatar</span>
+                    </div>
+                </div>
+                <div class="st-chatu8-avatar-controls">
+                    <button class="st-chatu8-btn st-chatu8-btn-small" id="ch-user-avatar-upload-btn">
+                        <i class="fa-solid fa-upload"></i> Upload Avatar
+                    </button>
+                    <button class="st-chatu8-btn st-chatu8-btn-small danger" id="ch-user-avatar-remove-btn" style="display: none;">
+                        <i class="fa-solid fa-trash"></i> Remove Avatar
+                    </button>
+                    <input type="file" id="ch-user-avatar-input" accept="image/*" style="display: none;" />
+                </div>
+                <p class="st-chatu8-hint">
+                    Recommended size: 256x256 or larger square images. JPG, PNG, and WebP are supported.
+                </p>
+            </div>
+        </div>
+
+        <!-- 基本信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Basic Information</h4>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-name">Name</label>
+                    <input type="text" id="ch-user-name" class="st-chatu8-text-input" placeholder="User's name" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-age">Age</label>
+                    <input type="text" id="ch-user-age" class="st-chatu8-text-input" placeholder="e.g., 18, unknown" />
+                </div>
+            </div>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-gender">Gender</label>
+                    <input type="text" id="ch-user-gender" class="st-chatu8-text-input" placeholder="e.g., female, male, other" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-race">Race/Species</label>
+                    <input type="text" id="ch-user-race" class="st-chatu8-text-input" placeholder="e.g., human, elf, catgirl" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 性格与背景区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Personality and Background</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-personality">Personality</label>
+                <textarea id="ch-user-personality" class="st-chatu8-textarea" rows="3" placeholder="Describe the character's personality traits..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-background">Background</label>
+                <textarea id="ch-user-background" class="st-chatu8-textarea" rows="3" placeholder="Character backstory and upbringing..."></textarea>
+            </div>
+        </div>
+
+        <!-- 外貌描述区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Appearance</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-bodyType">Build</label>
+                <textarea id="ch-user-bodyType" class="st-chatu8-textarea" rows="2" placeholder="Height, body type, and other details..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-appearance">Physical Features</label>
+                <textarea id="ch-user-appearance" class="st-chatu8-textarea" rows="2" placeholder="Hair, eye, skin color, and other appearance details..."></textarea>
+            </div>
+        </div>
+
+        <!-- 其他信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Additional Information</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-hobbies">Hobbies</label>
+                <textarea id="ch-user-hobbies" class="st-chatu8-textarea" rows="2" placeholder="Character interests and hobbies..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-abilities">Special Abilities</label>
+                <textarea id="ch-user-abilities" class="st-chatu8-textarea" rows="2" placeholder="Special abilities or skills the character has..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-speechStyle">Speech Style</label>
+                <textarea id="ch-user-speechStyle" class="st-chatu8-textarea" rows="2" placeholder="Speech habits and common catchphrases..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-relationships">Relationships</label>
+                <textarea id="ch-user-relationships" class="st-chatu8-textarea" rows="2" placeholder="Describe relationships with other characters..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-notes">Notes</label>
+                <textarea id="ch-user-notes" class="st-chatu8-textarea" rows="2" placeholder="Any other custom details..."></textarea>
+            </div>
+        </div>
+
+        <!-- 穿越认知区（次元穿越相关） -->
+        <div class="st-chatu8-settings-section">
+            <h4>🌀 Isekai Awareness <span class="st-chatu8-hint" style="font-weight:normal;font-size:12px;">(optional dimensional-travel setting)</span></h4>
+            <p class="st-chatu8-hint">
+                Defines the User's awareness of dimensional travel. Leave blank if this setting is not needed.
+            </p>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_origin">Origin</label>
+                <textarea id="ch-user-isekai_origin" class="st-chatu8-textarea" rows="2" placeholder="Which world, story, or era does the User come from?"></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_method">Travel Method</label>
+                <textarea id="ch-user-isekai_method" class="st-chatu8-textarea" rows="2" placeholder="How did they travel here? Summoning, dimensional rift, magic teleportation..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_reaction">Reaction After Arrival</label>
+                <textarea id="ch-user-isekai_reaction" class="st-chatu8-textarea" rows="3" placeholder="Feelings and reactions upon finding themselves in the computer world/tavern..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_goal">Goals During Travel</label>
+                <textarea id="ch-user-isekai_goal" class="st-chatu8-textarea" rows="2" placeholder="Besides interacting with characters, what else do they want to do while here?"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== 人设管理子标签页（新增） ===== -->
+    <div id="ch-sub-tab-kb-persona" class="st-chatu8-sub-tab-content" style="display: none;">
+
+        <!-- 预设管理栏 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Persona Presets</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-preset-id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-persona-preset-id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-save" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-save-as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-export-all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="ch-persona-import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="ch-persona-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <input type="file" id="ch-persona-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 人设生成区域 -->
+        <div class="ch-persona-gen-section">
+            <div class="ch-persona-gen-header">
+                <span class="ch-section-title">✨ AI Persona Generation</span>
+            </div>
+            <div class="ch-persona-gen-controls">
+                <!-- 生成类型选择器 -->
+                <div class="ch-persona-gen-type-selector">
+                    <label>Generation Type:</label>
+                    <select id="ch-persona-gen-type" class="st-chatu8-select">
+                        <option value="character">Character Persona (with dimensional-travel setting)</option>
+                        <option value="user">User Persona (without dimensional-travel setting)</option>
+                    </select>
+                </div>
+                <!-- 需求输入 -->
+                <div class="ch-persona-gen-demand">
+                    <label>Generation Requirements (Optional)</label>
+                    <textarea id="ch-persona-gen-demand" 
+                              class="ch-textarea" 
+                               placeholder="Describe the persona traits you want. Leave blank to generate from the current character card..."
+                              rows="3"></textarea>
+                </div>
+                <!-- 参考图片上传 -->
+                <div class="ch-persona-gen-upload">
+                    <div class="ch-persona-gen-upload-header">
+                        <label>📎 Reference Images (Optional)</label>
+                        <button type="button" id="ch-persona-gen-upload-btn" class="ch-btn-small">
+                            <i class="fa-solid fa-plus"></i> Add Images
+                        </button>
+                        <input type="file" id="ch-persona-gen-upload-input" accept="image/*" style="display: none;" />
+                    </div>
+                    <div id="ch-persona-gen-preview" class="ch-persona-gen-preview-container">
+                        <div class="ch-persona-gen-empty-hint">Click the button above to add reference images. The AI will use them to help generate the persona.</div>
+                    </div>
+                </div>
+                <!-- 生成按钮 -->
+                <div class="ch-persona-gen-actions">
+                    <button id="ch-persona-gen-btn" class="ch-btn ch-btn-primary">
+                        <span class="ch-btn-icon">🎭</span>
+                        <span class="ch-btn-text">Generate Persona</span>
+                    </button>
+                    <span id="ch-persona-gen-status" class="ch-status-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 全局控制区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Persona Controls</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-enabled">Enable Persona Injection</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-persona-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                Persona content is injected directly into the system prompt and is always visible to the AI.
+            </p>
+        </div>
+
+        <!-- 头像上传区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Avatar Settings</h4>
+            <div class="st-chatu8-avatar-upload-area">
+                <div class="st-chatu8-avatar-preview" id="ch-persona-avatar-preview">
+                    <img id="ch-persona-avatar-img" src="" alt="Avatar preview" />
+                    <div class="st-chatu8-avatar-placeholder">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Click to upload an avatar</span>
+                    </div>
+                </div>
+                <div class="st-chatu8-avatar-controls">
+                    <button class="st-chatu8-btn st-chatu8-btn-small" id="ch-persona-avatar-upload-btn">
+                        <i class="fa-solid fa-upload"></i> Upload Avatar
+                    </button>
+                    <button class="st-chatu8-btn st-chatu8-btn-small danger" id="ch-persona-avatar-remove-btn" style="display: none;">
+                        <i class="fa-solid fa-trash"></i> Remove Avatar
+                    </button>
+                    <input type="file" id="ch-persona-avatar-input" accept="image/*" style="display: none;" />
+                </div>
+                <p class="st-chatu8-hint">
+                    Recommended size: 256x256 or larger square images. JPG, PNG, and WebP are supported.
+                </p>
+            </div>
+        </div>
+
+        <!-- 基本信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Basic Information</h4>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-name">Character Name</label>
+                    <input type="text" id="ch-persona-name" class="st-chatu8-text-input" placeholder="Character name" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-age">Age</label>
+                    <input type="text" id="ch-persona-age" class="st-chatu8-text-input" placeholder="e.g., 18, unknown" />
+                </div>
+            </div>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-gender">Gender</label>
+                    <input type="text" id="ch-persona-gender" class="st-chatu8-text-input" placeholder="e.g., female, male, other" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-race">Race/Species</label>
+                    <input type="text" id="ch-persona-race" class="st-chatu8-text-input" placeholder="e.g., human, elf, catgirl" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 性格与背景区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Personality and Background</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-personality">Personality</label>
+                <textarea id="ch-persona-personality" class="st-chatu8-textarea" rows="3" placeholder="Describe the character's personality traits..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-background">Background</label>
+                <textarea id="ch-persona-background" class="st-chatu8-textarea" rows="3" placeholder="Character backstory and upbringing..."></textarea>
+            </div>
+        </div>
+
+        <!-- 外貌描述区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Appearance</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-bodyType">Build</label>
+                <textarea id="ch-persona-bodyType" class="st-chatu8-textarea" rows="2" placeholder="Height, body type, and other details..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-appearance">Physical Features</label>
+                <textarea id="ch-persona-appearance" class="st-chatu8-textarea" rows="2" placeholder="Hair, eye, skin color, and other appearance details..."></textarea>
+            </div>
+        </div>
+
+        <!-- 其他信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Additional Information</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-hobbies">Hobbies</label>
+                <textarea id="ch-persona-hobbies" class="st-chatu8-textarea" rows="2" placeholder="Character interests and hobbies..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-abilities">Special Abilities</label>
+                <textarea id="ch-persona-abilities" class="st-chatu8-textarea" rows="2" placeholder="Special abilities or skills the character has..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-speechStyle">Speech Style</label>
+                <textarea id="ch-persona-speechStyle" class="st-chatu8-textarea" rows="2" placeholder="Speech habits and common catchphrases..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-relationships">Relationships</label>
+                <textarea id="ch-persona-relationships" class="st-chatu8-textarea" rows="2" placeholder="Describe relationships with other characters..."></textarea>
+            </div>
+        </div>
+
+        <!-- 穿越认知区（次元穿越相关） -->
+        <div class="st-chatu8-settings-section">
+            <h4>🌀 Isekai Awareness <span class="st-chatu8-hint" style="font-weight:normal;font-size:12px;">(optional dimensional-travel setting)</span></h4>
+            <p class="st-chatu8-hint">
+                The character travels across dimensions to the tavern on the user's computer to accompany the user for 100 days.<br>
+                The fields below define the character's awareness of this travel. Leave them blank to disable the dimensional-travel setting.
+            </p>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_origin">Origin</label>
+                <textarea id="ch-persona-isekai_origin" class="st-chatu8-textarea" rows="2" placeholder="Which world, story, or era does the character come from?"></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_method">Travel Method</label>
+                <textarea id="ch-persona-isekai_method" class="st-chatu8-textarea" rows="2" placeholder="How did they travel here? Summoning, dimensional rift, magic teleportation..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_reaction">Reaction After Arrival</label>
+                <textarea id="ch-persona-isekai_reaction" class="st-chatu8-textarea" rows="3" placeholder="Feelings and reactions upon finding themselves in the computer world/tavern..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_goal">Goals During Travel</label>
+                <textarea id="ch-persona-isekai_goal" class="st-chatu8-textarea" rows="2" placeholder="Besides accompanying the user during the 100-day stay, what else do they want to do?"></textarea>
+            </div>
+        </div>
+
+        <!-- 补充信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>Additional Information</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-notes">Notes</label>
+                <textarea id="ch-persona-notes" class="st-chatu8-textarea" rows="2" placeholder="Any other custom details..."></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>

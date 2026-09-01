@@ -1,0 +1,140 @@
+<div id="ch-tab-log">
+    <!-- 生图生涯 -->
+    <div class="st-chatu8-settings-section">
+        <h3>🎨 Image Generation History</h3>
+
+        <!-- 汇总卡片 -->
+        <div id="ch-gen-summary" style="margin-bottom: 10px;">
+            <span style="color: #888;">Loading...</span>
+        </div>
+
+        <!-- 图例 -->
+        <div id="ch-gen-legend" style="margin-bottom: 6px;"></div>
+
+        <!-- 时间维度切换 -->
+        <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+            <button class="ch-period-btn" data-period="day"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">Day</button>
+            <button class="ch-period-btn" data-period="week"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">Week</button>
+            <button class="ch-period-btn" data-period="month"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">Month</button>
+            <button class="ch-period-btn" data-period="year"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">Year</button>
+        </div>
+
+        <!-- 柱状图区域 -->
+        <div id="ch-gen-chart" style="min-height: 110px; margin-bottom: 10px;">
+            <div style="text-align:center; color:#888; padding:20px 0;">Loading...</div>
+        </div>
+
+        <!-- 按后端进度条 -->
+        <div id="ch-gen-backends" style="margin-bottom: 8px;"></div>
+
+        <!-- 操作按钮 -->
+        <div class="st-chatu8-field" style="margin-top: 4px;">
+            <label>Actions</label>
+            <div>
+                <button id="ch-refresh-gen-stats" class="st-chatu8-btn">Refresh Statistics</button>
+                <button id="ch-reset-gen-stats" class="st-chatu8-btn danger">Reset Statistics</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col" style="font-size: 12px; color: #888;">
+            <span>💡 Each successful image generation is recorded permanently. View trends by day, week, month, or year.</span>
+        </div>
+    </div>
+
+    <!-- 调试模式 -->
+    <div class="st-chatu8-settings-section">
+        <h3>🔧 Debug Mode</h3>
+        <div class="st-chatu8-field">
+            <label>Debug Toggle</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <label class="checkbox_label">
+                    <input id="ch-debug-mode-toggle" type="checkbox" />
+                    <span>Enable Detailed Debug Logging</span>
+                </label>
+                <span id="ch-debug-status" style="color: #999; font-size: 12px;"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Debug Tools</label>
+            <div>
+                <button id="ch-download-debug-log" class="st-chatu8-btn" disabled>Download Debug Log</button>
+                <button id="ch-clear-debug-log" class="st-chatu8-btn danger" disabled>Clear Debug Log</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col" style="font-size: 12px; color: #888;">
+            <span>💡 Debug mode records detailed function execution times and branch logic. It is not persistent and must be re-enabled after closing settings.</span>
+        </div>
+    </div>
+
+    <!-- 错误收集器 -->
+    <div class="st-chatu8-settings-section">
+        <h3>🚨 Error Records <span style="font-size: 12px; color: #FFA726; font-weight: normal;">(global listener; not specific to this plugin)</span></h3>
+        <div class="st-chatu8-field-col"
+            style="font-size: 12px; color: #FFB74D; background: rgba(255,167,38,0.08); border-left: 3px solid #FFA726; padding: 8px 10px; border-radius: 4px; margin-bottom: 8px; line-height: 1.6;">
+            <span>
+                ⚠️ <strong>Note:</strong> This collects global browser errors, including SillyTavern, other plugins, and page scripts.
+                <strong>They may not be caused by this plugin.</strong> To investigate this plugin, see <strong>Logs</strong> below.
+            </span>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Error Statistics</label>
+            <div id="ch-error-stats" style="font-size: 12px; color: #666; line-height: 1.6;">
+                <span>Loading...</span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Error Tools</label>
+            <div>
+                <button id="ch-view-errors" class="st-chatu8-btn">View Error Details</button>
+                <button id="ch-download-errors" class="st-chatu8-btn" disabled>Download Diagnostic Bundle</button>
+                <button id="ch-clear-errors" class="st-chatu8-btn danger" disabled>Clear Error Records</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col" style="font-size: 12px; color: #888;">
+            <span>💡 Browser runtime errors are recorded automatically and remain when normal logs are cleared. Up to 500 records are kept. Diagnostic downloads include current logs. Most errors are unrelated to this plugin.</span>
+        </div>
+    </div>
+
+    <!-- 普通日志 -->
+    <div class="st-chatu8-settings-section">
+        <h3>📋 Logs <span style="font-size: 12px; color: #4FC3F7; font-weight: normal;">(investigate this plugin here)</span></h3>
+        <div class="st-chatu8-field-col"
+            style="font-size: 12px; color: #81D4FA; background: rgba(79,195,247,0.08); border-left: 3px solid #4FC3F7; padding: 8px 10px; border-radius: 4px; margin-bottom: 8px; line-height: 1.6;">
+            <span>
+                ✅ <strong>These are this plugin's runtime logs.</strong> Export these logs, not the error records above, when reporting an issue.
+            </span>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Actions</label>
+            <div>
+                <button id="ch-export-log" class="st-chatu8-btn">Export Logs</button>
+                <button id="ch-clear-log" class="st-chatu8-btn danger">Clear Logs</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-log-textarea">Log Output</label>
+            <textarea id="ch-log-textarea" class="st-chatu8-textarea" rows="15" readonly style="font-family: monospace; font-size: 12px;"></textarea>
+        </div>
+    </div>
+
+    <!-- 任务管理器 -->
+    <div class="st-chatu8-settings-section">
+        <h3>📊 Task Management <span id="ch-task-stats" class="st-chatu8-task-stats" style="display: none;"></span></h3>
+        <div class="st-chatu8-field">
+            <label>Actions</label>
+            <div>
+                <button id="ch-cancel-all-tasks" class="st-chatu8-btn danger">Cancel All</button>
+                <button id="ch-clear-completed" class="st-chatu8-btn">Clear Completed</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label>Task List</label>
+            <div id="ch-task-list" class="st-chatu8-task-list">
+                <div class="st-chatu8-task-empty">No Tasks</div>
+            </div>
+        </div>
+    </div>
+</div>

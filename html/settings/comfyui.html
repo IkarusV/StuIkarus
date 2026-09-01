@@ -1,0 +1,277 @@
+<div id="ch-tab-comfyui">
+    <div class="ch-prompts-section st-chatu8-settings-section">
+        <h3>Fixed Prompts</h3>
+        <div class="st-chatu8-field">
+            <label for="yusheid_comfyui">Prompt Preset</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="yusheid_comfyui" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_visual_select_comfyui" title="Visual Selector"><i class="fa-solid fa-grip"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_new_comfyui" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_update_style_comfyui" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_save_style_comfyui" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_rename_comfyui" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_current_comfyui" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_all_comfyui" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_import_comfyui" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st_chatu8_tishici_delete_style_comfyui" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_comfyui">Fixed Positive Prompt <span class="st-chatu8-unsaved-warning" title="Settings have not been saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_comfyui" title="Translate" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="fixedPrompt_comfyui-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_end_comfyui">Fixed Positive Prompt Suffix <span class="st-chatu8-unsaved-warning" title="Settings have not been saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_comfyui" title="Translate" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_end_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="fixedPrompt_end_comfyui-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="negativePrompt_comfyui">Fixed Negative Prompt <span class="st-chatu8-unsaved-warning" title="Settings have not been saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="negativePrompt_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="negativePrompt_comfyui-results" class="ch-autocomplete-results"></div>
+        </div>
+        
+        <h3>LORA</h3>
+        <div class="st-chatu8-field">
+            <label for="ComfyuiLORA">Add LoRA</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ComfyuiLORA" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="ComfyuiaddLORA" title="Add"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="weilin_lora_fix">Fix LoRA errors in the new weilin node (automatically add trigger words at strength 1)</label>
+            <select id="weilin_lora_fix" class="st-chatu8-select">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+            </select>
+        </div>
+        
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Prompt Replacement</h3>
+
+        <div class="st-chatu8-field">
+            <label for="prompt_replace_id_comfyui">Prompt Replacement</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="prompt_replace_id_comfyui" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_new_comfyui" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_update_style_comfyui" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_save_style_comfyui" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_rename_comfyui" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_current_comfyui" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_all_comfyui" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_import_comfyui" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="prompt_replace_delete_style_comfyui" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="prompt_replace_text_comfyui">Replacement Rules <span class="st-chatu8-unsaved-warning" title="Settings have not been saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="prompt_replace_text_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section"> 
+        <div class="st-chatu8-field">
+            <label for="AQT_comfyui">Positive Quality Preset</label>
+            <select id="AQT_comfyui" class="st-chatu8-select">
+                <option value="best quality, amazing quality, very aesthetic, absurdres">Enabled</option>
+                <option value="">Disabled</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="UCP_comfyui">Negative Quality Preset</label>
+            <select id="UCP_comfyui" class="st-chatu8-select">
+<option value="">None</option>
+<option value="bad proportions, out of focus, username, text, bad anatomy, lowres, worstquality, watermark, cropped, bad body, deformed, mutated, disfigured, poorly drawn face, malformed hands, extra arms, extra limb, missing limb, too many fingers, extra legs, bad feet, missing fingers, fused fingers, acnes, floating limbs, disconnected limbs, long neck, long body, mutation, ugly, blurry, low quality, sketches, normal quality, monochrome, grayscale, signature, logo, jpeg artifacts, unfinished, displeasing, chromatic aberration, extra digits, artistic error, scan, abstract, photo, realism, screencap">Author Preset</option>
+<option value="negativeXL_D, negativeXL, source_furry, extra limbs, deformations, long fingers, fused fingers, inaccurate_anatomy, bad proportions, poorly drawn hands, bad hands, extra_fingers, extra_hand, extra_arm, distorted fingers, ugly hands, creepy hands, six fingers, malformed fingers, long_fingers, interlocked fingers:1.2, ugly, deformed, uneven, asymmetrical, unnatural, missing fingers, extra digit, fewer digits, opaque eyes, small eyes, ugly eyes, blurred eyes, bad face, (bad anatomy, ugly face:1.2), (worst quality, low quality, not detailed, low resolution:1.2), motion_blur, blur, blur_censor, blurry, simple_background, text, error, cropped, normal quality, jpeg artifacts, watermark, logo, signature, username, artist name">Author Preset 2</option>
+            </select>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Configuration Profiles</h3>
+        <div class="st-chatu8-field">
+            <label for="comfyui_profile_id">Current Profile</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="comfyui_profile_id" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="comfyui_profile_load" title="Load">
+                    <i class="fa-solid fa-folder-open"></i>
+                </button>
+                <button class="st-chatu8-icon-btn" id="comfyui_profile_new" title="New">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <button class="st-chatu8-icon-btn" id="comfyui_profile_save" title="Save Current">
+                    <i class="fa-solid fa-save"></i>
+                </button>
+                <button class="st-chatu8-icon-btn danger" id="comfyui_profile_delete" title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Workflow</h3>
+        <div class="st-chatu8-field">
+            <label for="workerid">Workflow Preset</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="workerid" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="worker_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_update_style" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_save_style" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_export_current" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_export_all" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="worker_delete_style" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="worker">Workflow (JSON)</label>
+            <textarea id="worker" class="st-chatu8-textarea" rows="5"></textarea>
+            <div style="display: flex; gap: 10px; align-self: flex-end; margin-top: 10px;">
+                <button id="eidtwork" class="st-chatu8-btn">Simple Edit</button>
+                <button id="visualize_workflow" class="st-chatu8-btn"><i class="fa-solid fa-diagram-project"></i> Visualize</button>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Image Editing Presets</h3>
+        <div class="st-chatu8-field">
+            <label for="editWorkerid">Image Editing Workflow Preset</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="editWorkerid" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="edit_worker_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_update_style" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_save_style" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_export_current" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_export_all" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="edit_worker_delete_style" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="editWorker">Image Editing Workflow (JSON)</label>
+            <textarea id="editWorker" class="st-chatu8-textarea" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>ComfyUI Settings</h3>
+        <div class="st-chatu8-field">
+            <label for="comfyuiUrl">API Address</label>
+            <div class="st-chatu8-input-group">
+                <i class="fa-solid fa-exclamation-triangle st-chatu8-url-warning-icon" title="Invalid URL format"></i>
+                <input type="text" id="comfyuiUrl" class="st-chatu8-text-input" placeholder="http://127.0.0.1:8188">
+                <button id="testComfyui" class="st-chatu8-btn">Connect and Refresh Data</button>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h4>Other Settings</h4>
+        <div class="st-chatu8-field">
+            <label for="MODEL_NAME">Model File</label>
+            <select id="MODEL_NAME" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="comfyuisamplerName">Sampling Method</label>
+            <select id="comfyuisamplerName" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="comfyui_vae">VAE</label>
+            <select id="comfyui_vae" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="comfyui_scheduler">Scheduler</label>
+            <select id="comfyui_scheduler" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="comfyuiCLIPName">CLIP</label>
+            <select id="comfyuiCLIPName" class="st-chatu8-select"></select>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h4>Generation Parameters</h4>
+        <div class="st-chatu8-grid">
+            <div class="st-chatu8-field">
+                <label for="comfyui_size">Preset Size</label>
+                <select id="comfyui_size" class="st-chatu8-select">
+                    <option value="512x512">512x512 (1:1, Icon)</option>
+                    <option value="640x640">640x640 (1:1, Icon)</option>
+                    <option value="512x768">512x768 (2:3, Portrait)</option>
+                    <option value="768x512">768x512 (3:2, Landscape)</option>
+                    <option value="1024x1024">1024x1024 (1:1, SDXL)</option>
+                    <option value="1216x832">1216x832 (19:13, Ultra HD)</option>
+                    <option value="832x1216">832x1216 (13:19, Ultra HD)</option>
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="comfyui_width">Width</label>
+                <input type="number" id="comfyui_width" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="comfyui_height">Height</label>
+                <input type="number" id="comfyui_height" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="comfyui_steps">Generation Steps</label>
+                <input type="number" id="comfyui_steps" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="comfyui_seed">Seed</label>
+                <input type="number" id="comfyui_seed" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="cfg_comfyui">CFG</label>
+                <input type="number" id="cfg_comfyui" class="st-chatu8-text-input">
+            </div>
+        </div>
+    </div>
+
+     <div class="st-chatu8-settings-section">
+        <h3>Reference Image</h3>
+        <div class="st-chatu8-field-col">
+            <label>Image Preview</label>
+            <div id="comfyui-image-preview-container" class="st-chatu8-image-preview-container">
+                <div class="st-chatu8-image-placeholder">
+                    <i class="fa-solid fa-image"></i>
+                    <span>No image selected</span>
+                </div>
+                <img id="previewImage2" src="" alt="Reference image preview">
+            </div>
+            <div class="st-chatu8-image-controls">
+                <input type="file" id="imageInput2" accept="image/*" style="display:none;">
+                <button type="button" class="st-chatu8-btn" id="comfyui-select-image-btn"><i class="fa-solid fa-upload"></i> Select Image</button>
+                <button type="button" class="st-chatu8-btn danger" id="comfyui-remove-image-btn" style="display: none;"><i class="fa-solid fa-trash"></i> Remove Image</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ipa">IPA Type</label>
+            <select id="ipa" class="st-chatu8-select">
+                <option>STANDARD (medium strength)</option>
+                <option>LIGHT - SD1.5 only (low strength)</option>
+                <option>VIT-G (medium strength)</option>
+                <option>PLUS (high strength)</option>
+                <option>PLUS FACE (portraits)</option>
+                <option>FULL FACE - SD1.5 only (portraits stronger)</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="c_fenwei">Atmosphere Strength</label>
+            <input type="number" id="c_fenwei" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="c_xijie">Detail Strength</label>
+            <input type="number" id="c_xijie" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="c_quanzhong">Weight</label>
+            <input type="number" id="c_quanzhong" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="c_idquanzhong">FaceID Weight</label>
+            <input type="number" id="c_idquanzhong" class="st-chatu8-text-input">
+        </div>
+    </div>
+</div>

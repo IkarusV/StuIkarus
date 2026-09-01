@@ -1,0 +1,382 @@
+<div id="ch-tab-novelai">
+    <div class="ch-prompts-section st-chatu8-settings-section">
+        <h3>Fixed Prompts</h3>
+        <div class="st-chatu8-field">
+            <label for="yusheid_novelai">Prompt Preset</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="yusheid_novelai" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_visual_select_novelai" title="Visual Selection"><i class="fa-solid fa-grip"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_new_novelai" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_update_style_novelai" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_save_style_novelai" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_rename_novelai" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_current_novelai" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_all_novelai" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_import_novelai" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st_chatu8_tishici_delete_style_novelai" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_novelai">Fixed Positive Prompt <span class="st-chatu8-unsaved-warning" title="Settings not saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_novelai" title="Translate" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_fixedPrompt_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0 / 512</div>
+            <div id="fixedPrompt_novelai-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_end_novelai">Fixed Positive Prompt Suffix <span class="st-chatu8-unsaved-warning" title="Settings not saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_novelai" title="Translate" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_end_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_fixedPrompt_end_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0 / 512</div>
+            <div id="fixedPrompt_end_novelai-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="negativePrompt_novelai">Fixed Negative Prompt <span class="st-chatu8-unsaved-warning" title="Settings not saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="negativePrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_negativePrompt_tokens" class="st-chatu8-token-display">Current: 0 / 512</div>
+            <div id="negativePrompt_novelai-results" class="ch-autocomplete-results"></div>
+        </div>
+
+    </div>
+    <div class="st-chatu8-settings-section"> 
+        <h3>Prompt Replacement</h3>
+        <div class="st-chatu8-field">
+            <label for="prompt_replace_id_novelai">Prompt Replacement</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="prompt_replace_id_novelai" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_new_novelai" title="New"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_update_style_novelai" title="Save"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_save_style_novelai" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_rename_novelai" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_current_novelai" title="Export Current"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_all_novelai" title="Export All"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_import_novelai" title="Import"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="prompt_replace_delete_style_novelai" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="prompt_replace_text_novelai">Replacement Rules <span class="st-chatu8-unsaved-warning" title="Settings not saved" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="prompt_replace_text_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+        </div>
+    </div>
+        <div class="st-chatu8-settings-section"> 
+        <div class="st-chatu8-field">
+            <label for="addFurryDataset">Add Furry Dataset</label>
+            <select id="addFurryDataset" class="st-chatu8-select">
+                <option value="true">Enabled</option>
+                <option value="false" selected="">Disabled</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="AQT_novelai">Positive Quality Preset</label>
+            <select id="AQT_novelai" class="st-chatu8-select">
+                <option value="best quality, amazing quality, very aesthetic, absurdres">Enabled</option>
+                <option value="">Disabled</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="UCP_novelai">Negative Quality Preset</label>
+            <select id="UCP_novelai" class="st-chatu8-select">
+            </select>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Configuration Profiles</h3>
+        <div class="st-chatu8-field">
+            <label for="novelai_profile_id">Current Configuration</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="novelai_profile_id" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="novelai_profile_load" title="Load">
+                    <i class="fa-solid fa-folder-open"></i>
+                </button>
+                <button class="st-chatu8-icon-btn" id="novelai_profile_new" title="New">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <button class="st-chatu8-icon-btn" id="novelai_profile_save" title="Save Current">
+                    <i class="fa-solid fa-save"></i>
+                </button>
+                <button class="st-chatu8-icon-btn danger" id="novelai_profile_delete" title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>NovelAI Settings</h3>
+        <div class="st-chatu8-field-col">
+            <label for="novelaiApi">NovelAI API</label>
+            <div style="position: relative; display: flex; align-items: center;">
+                <input type="password" id="novelaiApi" class="st-chatu8-text-input" style="padding-right: 2.2em;">
+                <button type="button" id="novelaiApiToggle" title="Show/Hide API Key" style="position: absolute; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="novelaisite">Site</label>
+            <select id="novelaisite" class="st-chatu8-select">
+                <option value="官网">Official</option>
+                <option value="其他站点">Other Site</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field" id="novelai-other-site-field">
+            <label for="novelaiOtherSite">Other NovelAI Site</label>
+            <input type="text" id="novelaiOtherSite" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enableCloudQueue">Enable Cloud Queue</label>
+            <div class="st-chatu8-toggle">
+                <input id="enableCloudQueue" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field" id="cloud-queue-url-field">
+            <label for="cloudQueueUrl">Queue Service URL</label>
+            <input type="text" id="cloudQueueUrl" class="st-chatu8-text-input" placeholder="https://xxx.hf.space">
+        </div>
+        <div class="st-chatu8-field" id="cloud-queue-greeting-field">
+            <label for="cloudQueueGreeting">Queue Greeting (15 characters)</label>
+            <input type="text" id="cloudQueueGreeting" class="st-chatu8-text-input" placeholder="Generating..." maxlength="15">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="showQueueGreeting">Show Others' Greetings</label>
+            <div class="st-chatu8-toggle">
+                <input id="showQueueGreeting" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="novelaimode">Model</label>
+            <select id="novelaimode" class="st-chatu8-select">
+                <option>nai-diffusion-5-full</option>
+                <option>nai-diffusion-5-curated</option>
+                <option>nai-diffusion-3</option>
+                <option>nai-diffusion-4-full</option>
+                <option>nai-diffusion-4-curated-preview</option>
+                <option>nai-diffusion-4-5-curated</option>
+                <option>nai-diffusion-4-5-full</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-novelai-straight-alpha-field" style="display: none;">
+            <label for="novelai_straight_alpha">Transparent Image Toggle (straight_alpha)</label>
+            <div class="st-chatu8-toggle">
+                <input id="novelai_straight_alpha" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="novelai_sampler">Sampler</label>
+            <select id="novelai_sampler" class="st-chatu8-select">
+                <option value="k_euler">Euler</option>
+                <option value="ddim_v3">DDIM</option>
+                <option value="k_dpmpp_2s_ancestral"> DPM++ 2S Ancestral</option>
+                <option value="k_dpmpp_2m">DPM++ 2M</option>
+                <option value="k_euler_ancestral"> Euler Ancestral</option>
+                <option value="k_dpmpp_2m_sde">DPM++ 2M SDE</option>
+                <option value="k_dpmpp_sde">DPM++ SDE</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="Schedule">Noise Schedule</label>
+            <select id="Schedule" class="st-chatu8-select">
+                <option>native</option>
+                <option>exponential</option>
+                <option>polyexponential</option>
+                <option>karras</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="nai3Scale">Prompt Guidance</label>
+            <input type="number" id="nai3Scale" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="cfg_rescale">Prompt Guidance Rescale</label>
+            <input type="number" id="cfg_rescale" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="AI_use_coords">AI Default Character Position</label>
+            <div class="st-chatu8-toggle">
+                <input id="AI_use_coords" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-nai3-sm-field">
+            <label for="sm">SMEA</label>
+            <div class="st-chatu8-toggle">
+                <input id="sm" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-nai3-dyn-field">
+            <label for="dyn">SMEA DYN</label>
+            <div class="st-chatu8-toggle">
+                <input id="dyn" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="nai3Variety">Variety</label>
+            <div class="st-chatu8-toggle">
+                <input id="nai3Variety" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-nai3-deceisp-field">
+            <label for="nai3Deceisp">Reduce Artifacts (Decrisp)</label>
+            <div class="st-chatu8-toggle">
+                <input id="nai3Deceisp" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h4>Generation Parameters</h4>
+        <div class="st-chatu8-grid">
+            <div class="st-chatu8-field">
+                <label for="novelai_size">Preset Size</label>
+                <select id="novelai_size" class="st-chatu8-select">
+                    <option value="512x512">512x512 (1:1, Icon)</option>
+                    <option value="640x640">640x640 (1:1, Icon)</option>
+                    <option value="512x768">512x768 (2:3, Portrait)</option>
+                    <option value="768x512">768x512 (3:2, Landscape)</option>
+                    <option value="1024x1024">1024x1024 (1:1, SDXL)</option>
+                    <option value="1216x832">1216x832 (19:13, Ultra HD)</option>
+                    <option value="832x1216">832x1216 (13:19, Ultra HD)</option>
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="novelai_width">Width</label>
+                <input type="number" id="novelai_width" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="novelai_height">Height</label>
+                <input type="number" id="novelai_height" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="novelai_steps">Steps</label>
+                <input type="number" id="novelai_steps" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="novelai_seed">Seed</label>
+                <input type="number" id="novelai_seed" class="st-chatu8-text-input">
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section" id="nai-vibe-transfer-section">
+        <h3>Vibe Reference Image (Vibe Transfer)</h3>
+        <div class="st-chatu8-field">
+            <label for="nai3VibeTransfer">Enable Vibe Reference</label>
+            <div class="st-chatu8-toggle">
+                <input id="nai3VibeTransfer" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label>Image Preview</label>
+            <div id="novelai-image-preview-container" class="st-chatu8-image-preview-container">
+                <div class="st-chatu8-image-placeholder">
+                    <i class="fa-solid fa-image"></i>
+                    <span>No image selected</span>
+                </div>
+                <img id="previewImage_novelai" src="" alt="Reference image preview">
+            </div>
+            <div class="st-chatu8-image-controls">
+                <input type="file" id="imageInput_novelai" accept="image/*" style="display:none;">
+                <button type="button" class="st-chatu8-btn" id="novelai-select-image-btn"><i class="fa-solid fa-upload"></i> Select Image</button>
+                <button type="button" class="st-chatu8-btn danger" id="novelai-remove-image-btn" style="display: none;"><i class="fa-solid fa-trash"></i> Remove Image</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="InformationExtracted">Vibe Information Extracted</label>
+            <div class="st-chatu8-range-container">
+                <input type="range" id="InformationExtracted_range" class="st-chatu8-range-slider" min="0" max="1" step="0.01">
+                <input type="number" id="InformationExtracted" class="st-chatu8-range-input" min="0" max="1" step="0.01">
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ReferenceStrength">Vibe Strength</label>
+            <div class="st-chatu8-range-container">
+                <input type="range" id="ReferenceStrength_range" class="st-chatu8-range-slider" min="0" max="1" step="0.01">
+                <input type="number" id="ReferenceStrength" class="st-chatu8-range-input" min="0" max="1" step="0.01">
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section" id="nai-char-ref-section">
+        <h3>Character Reference Image Settings</h3>
+        <div class="st-chatu8-field">
+            <label for="nai3CharRef">Enable Character References</label>
+            <div class="st-chatu8-toggle" title="Not recommended. Each additional reference image costs 5 extra credits, and each image generation is charged once.">
+                <input id="nai3CharRef" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Character Reference Image Management</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-char-ref-upload-btn">
+                    <i class="fa-solid fa-upload"></i> Open Reference Image Upload
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    Upload character reference images to the library
+                </small>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Character Group Management</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-char-ref-group-editor-btn" title="Manage Character Reference Group Presets">
+                    <i class="fa-solid fa-layer-group"></i> Edit Character Groups
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    Create and manage combination presets with up to 4 character references
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Vibe Transfer Settings</h3>
+        <div class="st-chatu8-field">
+            <label>Vibe File Generator</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-vibe-generator-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Open Vibe Generator
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    Generate official-compatible .naiv4vibe files that can be imported directly into the NovelAI website
+                </small>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Vibe Group Management</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-vibe-group-editor-btn" title="Manage Vibe Group Presets">
+                    <i class="fa-solid fa-layer-group"></i> Edit Vibe Groups
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    Create and manage combination presets with up to 4 Vibes
+                </small>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enableVibeGroupTransfer">Enable Vibe Group Transfer</label>
+            <div class="st-chatu8-toggle" title="Use a Vibe group for vibe transfer, with up to 4 Vibes at once. Enabling this automatically disables individual Vibe transfer.">
+                <input id="enableVibeGroupTransfer" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="randomVibeGroup">Random Vibe Group</label>
+            <div class="st-chatu8-toggle" title="Randomly choose a non-empty Vibe group for each image instead of using the currently selected group. Vibe Group Transfer must be enabled first.">
+                <input id="randomVibeGroup" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="normalizeRefStrength">Normalize Reference Strength Values</label>
+            <div class="st-chatu8-toggle" title="Normalize reference strength values. When enabled, the strength values of Vibes in a Vibe group are automatically normalized to total 1.0.">
+                <input id="normalizeRefStrength" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+    </div>
+</div>

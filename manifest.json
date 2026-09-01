@@ -1,0 +1,12 @@
+{
+    "display_name": "st-chatu8",
+    "loading_order": 9,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "从前跟你一样; English/Magimo fork",
+    "version": "2.8.4-en.1",
+    "homePage": "https://github.com/IkarusV/StuIkarus",
+    "auto_update": false
+}

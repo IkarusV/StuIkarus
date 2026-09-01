@@ -1,0 +1,750 @@
+<div id="ch-tab-character">
+    <!-- 子导航 -->
+    <div class="st-chatu8-sub-nav">
+        <a href="#" class="st-chatu8-sub-nav-link active" data-sub-tab="ch-sub-tab-character-settings">Character Settings</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-outfit-settings">Outfit Management</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-character-enable">Character Enablement</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-outfit-enable">Enabled Common Outfit List</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-character-common">Enabled Common Character List</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-banana-character">Banana Character Management</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-injection-templates">Prompt Injection Templates</a>
+    </div>
+
+    <!-- 角色设定子页面 -->
+    <div id="ch-sub-tab-character-settings" class="st-chatu8-sub-tab-content" style="display: block;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Character Presets</h3>
+            <div class="st-chatu8-field">
+                <label for="character_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="character_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_visual_select" title="Visual Selection"><i class="fa-solid fa-grip"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_update" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_export_all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色照片区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Character Photo</h3>
+            <div class="st-chatu8-field-col" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="st-chatu8-character-photo-container" id="char_photo_container" style="display: flex; justify-content: center;">
+                    <img id="char_photo_preview" src="" style="display: none; max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain;">
+                    <div class="st-chatu8-image-placeholder" id="char_photo_placeholder" style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: var(--SmartThemeBlurTintColor); border-radius: 8px;">
+                        <i class="fa-solid fa-image" style="font-size: 48px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <input type="file" id="char_photo_upload_input" accept="image/*" style="display: none;">
+                <button class="st-chatu8-btn" id="char_photo_upload" style="margin-top: 10px;">
+                    <i class="fa-solid fa-upload"></i> Upload Photo
+                </button>
+                <div class="st-chatu8-field" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <label for="char_send_photo" class="st-chatu8-checkbox-label" style="margin: 0; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="char_send_photo" class="st-chatu8-checkbox">
+                        <span>Send Image</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                <label for="char_photo_prompt">Prompt</label>
+                <textarea id="char_photo_prompt" class="st-chatu8-textarea" rows="3" placeholder="Enter a prompt to generate a character image..."></textarea>
+                <div id="char_photo_prompt-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="st-chatu8-btn" id="char_photo_generate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Image
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_generate_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-lightbulb"></i> Generate Image Prompt
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_modify_character_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit Character Prompt
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_character_data" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-database"></i> Character Data
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_prompt_translate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-language"></i> Translate
+                </button>
+            </div>
+        </div>
+
+        <!-- 角色参数区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Character Details</h3>
+            <div class="st-chatu8-field-col">
+                <label for="char_nameCN">Character Name (Chinese)</label>
+                <input type="text" id="char_nameCN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_nameEN">Character Name (English)</label>
+                <input type="text" id="char_nameEN" class="st-chatu8-text-input" />
+            </div>
+
+            <!-- 全身组合 Token 统计 -->
+            <div class="st-chatu8-settings-section" style="background: var(--SmartThemeBlurTintColor); padding: 10px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
+                <label style="font-weight: bold; margin-bottom: 5px; display: block;">Full-Body Combined Token Count (Character Traits + Facial Features + Upper Body + Lower Body)</label>
+                <div id="char_combo_token_stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 0.85em; opacity: 0.9;">
+                    <div id="token_combo_front_sfw">Front SFW Full Body: 0</div>
+                    <div id="token_combo_front_nsfw">Front NSFW Full Body: 0</div>
+                    <div id="token_combo_back_sfw">Back SFW Full Body: 0</div>
+                    <div id="token_combo_back_nsfw">Back NSFW Full Body: 0</div>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_characterTraits">Character Traits</label>
+                <textarea id="char_characterTraits" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_characterTraits_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_characterTraits-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_facialFeatures">Facial Features</label>
+                <textarea id="char_facialFeatures" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_facialFeatures_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_facialFeatures-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_facialFeaturesBack">Facial Features (Back)</label>
+                <textarea id="char_facialFeaturesBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_facialFeaturesBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_facialFeaturesBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodySFW">Upper Body SFW</label>
+                <textarea id="char_upperBodySFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodySFW_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_upperBodySFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodySFWBack">Upper Body SFW (Back)</label>
+                <textarea id="char_upperBodySFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodySFWBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_upperBodySFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodySFW">Lower Body SFW</label>
+                <textarea id="char_fullBodySFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodySFW_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_fullBodySFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodySFWBack">Lower Body SFW (Back)</label>
+                <textarea id="char_fullBodySFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodySFWBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_fullBodySFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodyNSFW">Upper Body NSFW</label>
+                <textarea id="char_upperBodyNSFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodyNSFW_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_upperBodyNSFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodyNSFWBack">Upper Body NSFW (Back)</label>
+                <textarea id="char_upperBodyNSFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodyNSFWBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_upperBodyNSFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodyNSFW">Lower Body NSFW</label>
+                <textarea id="char_fullBodyNSFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodyNSFW_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_fullBodyNSFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodyNSFWBack">Lower Body NSFW (Back)</label>
+                <textarea id="char_fullBodyNSFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodyNSFWBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_fullBodyNSFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_negative">Negative Prompt</label>
+                <textarea id="char_negative" class="st-chatu8-textarea" rows="3" placeholder="Negative prompt..."></textarea>
+                <div id="char_negative_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="char_negative-results" class="ch-autocomplete-results"></div>
+                <span class="st-chatu8-unsaved-warning" style="display: none;">Unsaved</span>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px; display: flex; gap: 10px;">
+                <button class="st-chatu8-btn" id="char_translate" style="flex: 1;">
+                    <i class="fa-solid fa-language"></i> Translate
+                </button>
+                <button class="st-chatu8-btn" id="char_clear_details" style="flex: 1;">
+                    <i class="fa-solid fa-trash-can"></i> Clear Details
+                </button>
+            </div>
+            
+            <!-- 服装列表管理 -->
+            <div class="st-chatu8-field-col">
+                <label for="char_outfit_list">Outfit List (one outfit name per line)</label>
+                <textarea id="char_outfit_list" class="st-chatu8-textarea" rows="5" placeholder="Enter one outfit name per line"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="char_outfit_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> Check Whether Outfits Exist
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="char_outfit_selector">Select from Outfit Presets</label>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="char_outfit_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
+                    <button class="st-chatu8-icon-btn" id="char_outfit_refresh" title="Refresh List">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="char_outfit_add">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+
+            <div id="char_outfit_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>Check Results</label>
+                <div id="char_outfit_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服装管理子页面 -->
+    <div id="ch-sub-tab-outfit-settings" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Outfit Presets</h3>
+            <div class="st-chatu8-field">
+                <label for="outfit_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="outfit_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_visual_select" title="Visual Selection"><i class="fa-solid fa-grip"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_update" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_export_all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="outfit_delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服装照片区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Outfit Photo</h3>
+            <div class="st-chatu8-field-col" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="st-chatu8-character-photo-container" id="outfit_photo_container" style="display: flex; justify-content: center;">
+                    <img id="outfit_photo_preview" src="" style="display: none; max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain;">
+                    <div class="st-chatu8-image-placeholder" id="outfit_photo_placeholder" style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: var(--SmartThemeBlurTintColor); border-radius: 8px;">
+                        <i class="fa-solid fa-shirt" style="font-size: 48px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <input type="file" id="outfit_photo_upload_input" accept="image/*" style="display: none;">
+                <button class="st-chatu8-btn" id="outfit_photo_upload" style="margin-top: 10px;">
+                    <i class="fa-solid fa-upload"></i> Upload Photo
+                </button>
+                <div class="st-chatu8-field" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <label for="outfit_send_photo" class="st-chatu8-checkbox-label" style="margin: 0; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="outfit_send_photo" class="st-chatu8-checkbox">
+                        <span>Send Image</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                <label for="outfit_photo_prompt">Prompt</label>
+                <textarea id="outfit_photo_prompt" class="st-chatu8-textarea" rows="3" placeholder="Enter a prompt to generate an outfit image..."></textarea>
+                <div id="outfit_photo_prompt-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="st-chatu8-btn" id="outfit_photo_generate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Image
+                </button>
+                <button class="st-chatu8-btn" id="outfit_photo_generate_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-lightbulb"></i> Generate Image Prompt
+                </button>
+                <button class="st-chatu8-btn" id="outfit_photo_modify_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit Outfit Prompt
+                </button>
+                <button class="st-chatu8-btn" id="outfit_photo_prompt_translate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-language"></i> Translate
+                </button>
+            </div>
+        </div>
+
+        <!-- 服装参数区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Outfit Details</h3>
+
+            <div class="st-chatu8-field-col">
+                <label for="outfit_nameCN">Outfit Name (Chinese)</label>
+                <input type="text" id="outfit_nameCN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_nameEN">Outfit Name (English)</label>
+                <input type="text" id="outfit_nameEN" class="st-chatu8-text-input" />
+            </div>
+
+            <!-- 服装全身组合 Token 统计 -->
+            <div class="st-chatu8-settings-section" style="background: var(--SmartThemeBlurTintColor); padding: 10px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
+                <label style="font-weight: bold; margin-bottom: 5px; display: block;">Outfit Full-Body Combined Token Count (Upper Body + Lower Body)</label>
+                <div id="outfit_combo_token_stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 0.85em; opacity: 0.9;">
+                    <div id="token_combo_outfit_front">Front Full Body: 0</div>
+                    <div id="token_combo_outfit_back">Back Full Body: 0</div>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_upperBody">Upper Body</label>
+                <textarea id="outfit_upperBody" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_upperBody_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="outfit_upperBody-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_upperBodyBack">Upper Body (Back)</label>
+                <textarea id="outfit_upperBodyBack" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_upperBodyBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="outfit_upperBodyBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_fullBody">Lower-Body Outfit</label>
+                <textarea id="outfit_fullBody" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_fullBody_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="outfit_fullBody-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_fullBodyBack">Lower Body (Back)</label>
+                <textarea id="outfit_fullBodyBack" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_fullBodyBack_tokens" class="st-chatu8-token-display">Current: 0 | Total: 0</div>
+                <div id="outfit_fullBodyBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px; display: flex; gap: 10px;">
+                <button class="st-chatu8-btn" id="outfit_translate" style="flex: 1;">
+                    <i class="fa-solid fa-language"></i> Translate
+                </button>
+                <button class="st-chatu8-btn" id="outfit_clear_details" style="flex: 1;">
+                    <i class="fa-solid fa-trash-can"></i> Clear Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 角色启用管理子页面 -->
+    <div id="ch-sub-tab-character-enable" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Character Startup Presets</h3>
+            <div class="st-chatu8-field">
+                <label for="character_enable_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="character_enable_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_enable_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_update" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_export_all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_enable_delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                <label for="character_enable_bind_card">Bind Character Card Name (automatically apply this preset when switching characters)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="character_enable_bind_card" class="st-chatu8-text-input" placeholder="Enter the bound character card name (conet.name2)" style="flex: 1;" />
+                    <button class="st-chatu8-btn" id="character_enable_bind_current_btn" title="Get the current chat character name">
+                        <i class="fa-solid fa-bullseye"></i> Current Character
+                    </button>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                <label for="character_enable_bind_chat">Bind Chat ID (when multiple presets bind to the same character card, match further by chat ID)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="character_enable_bind_chat" class="st-chatu8-text-input" placeholder="Enter the bound chat ID (conet.chatId)" style="flex: 1;" />
+                    <button class="st-chatu8-btn" id="character_enable_bind_current_chat_btn" title="Get the current chat ID">
+                        <i class="fa-solid fa-bullseye"></i> Current Chat
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色列表管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Enabled Character List</h3>
+            <div class="st-chatu8-field-col">
+                <label for="character_enable_list">Character List (one character name per line)</label>
+                <textarea id="character_enable_list" class="st-chatu8-textarea" rows="10" placeholder="Enter one character name per line"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_enable_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> Check Whether Characters Exist
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="character_enable_selector">Select from Character Settings</label>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="character_enable_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
+                    <button class="st-chatu8-icon-btn" id="character_enable_refresh" title="Refresh List">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="character_enable_add">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+
+            <div id="character_enable_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>Check Results</label>
+                <div id="character_enable_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                <label for="character_enable_test_input">Trigger Test</label>
+                <textarea id="character_enable_test_input" class="st-chatu8-textarea" rows="4" placeholder="Enter any supported format. Expand below to view examples."></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">Supported Input Formats (click to expand)</summary>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
+                        <li><strong>Legacy character marker:</strong><code>$角色名字-sfw-upperbody$</code>, <code>$角色名字-nsfw-upperbody-sfw-lowerbody$</code></li>
+                        <li><strong>JSON character marker:</strong><code>$&#123;"name":"角色名字","angle":"from front","upperBody":"sfw","lowerBody":"hidden"&#125;$</code></li>
+                        <li><strong>Multiple characters (multiple $...$ segments in one tag string):</strong><code>$小红-sfw-upperbody$, standing, $小蓝-sfw-upperbody$, smiling</code></li>
+                        <li style="color: var(--SmartThemeEmColor);">For debugging, match name only: <code>角色名字</code>, <code>角色名字[当前]</code> (the actual replacement process does not recognize bare names)</li>
+                    </ul>
+                    <div style="margin-top: 6px; font-size: 0.85em; color: var(--SmartThemeEmColor);">
+                        The test performs name matching only: it extracts character names from the input and checks them against the enabled list. It does not execute the full replacement process.<br>
+                        Formal parsing requires <code>$...$</code> to contain either a name plus a legacy-format suffix or a JSON object. Bare names such as <code>$角色名字$</code> remain unchanged during actual replacement.<br>
+                        When the input contains multiple <code>$...$</code> segments, each is automatically identified as a character and its result is displayed in a table.
+                    </div>
+                </details>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_enable_test" style="width: 100%;">
+                    <i class="fa-solid fa-flask"></i> Test Character Name Matching
+                </button>
+            </div>
+
+            <div id="character_enable_test_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>Test Results</label>
+                <div id="character_enable_test_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 240px; overflow-y: auto;"></div>
+            </div>
+
+            <hr style="margin: 20px 0; border-color: var(--SmartThemeBorderColor);">
+
+            <div class="st-chatu8-field-col">
+                <label for="character_list_test_input">{{角色启用列表}} Trigger Test</label>
+                <textarea id="character_list_test_input" class="st-chatu8-textarea" rows="4" placeholder="Paste trigger text (for example, user request, context, or World Info trigger content) to see which enabled characters are included."></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">{{角色启用列表}} Trigger Rules and Differences from Character Triggers (click to expand)</summary>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
+                        <li><strong>Trigger source:</strong> Scans only characters registered in the current Character Enablement preset. It <u>does not</u> use the common list or global-preset fallback.</li>
+                        <li><strong>Matching method:</strong> Performs substring matching against each enabled character's Chinese or English name.</li>
+                        <li><strong>Name splitting:</strong> Names can use <code>|</code> to separate aliases; a match on any alias triggers the character.</li>
+                        <li><strong>Case and spaces:</strong> Both are ignored. Trigger text and names are stripped of whitespace and compared in lowercase.</li>
+                        <li><strong>Result count:</strong> Multiple characters can match at once. Every matching character is included in the <code>{{角色启用列表}}</code> text.</li>
+                    </ul>
+                    <div style="margin-top: 8px; font-size: 0.85em; color: var(--SmartThemeEmColor);">
+                        Differences from character triggers (<code>$...$</code> replacement):<br>
+                        &nbsp;&nbsp;• <strong>Whether the list must be enabled:</strong> List triggers <u>must</u> be in the enabled list. For character triggers, the enabled list only determines priority; fallback matches all presets.<br>
+                        &nbsp;&nbsp;• <strong>Matching algorithm:</strong> List triggers only perform substring matching. Character triggers use <code>normalizeName</code> plus similarity scoring.<br>
+                        &nbsp;&nbsp;• <strong>Match count:</strong> List triggers can match multiple characters. Character triggers select only one best match for each <code>$...$</code> segment.<br>
+                        &nbsp;&nbsp;• <strong>Input form:</strong> List triggers accept any natural text. Character triggers require <code>$...$</code> to contain a legacy-format suffix or JSON object.
+                    </div>
+                </details>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_list_test" style="width: 100%;">
+                    <i class="fa-solid fa-list-check"></i> Test {{角色启用列表}} Trigger
+                </button>
+            </div>
+
+            <div id="character_list_test_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>Test Results</label>
+                <div id="character_list_test_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 320px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 启用通用服装列表子页面 -->
+    <div id="ch-sub-tab-outfit-enable" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Common Outfit List Presets</h3>
+            <div class="st-chatu8-field">
+                <label for="outfit_enable_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="outfit_enable_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_update" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_export_all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="outfit_enable_delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服装列表管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Common Outfit List</h3>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_enable_list">Outfit List (one outfit name per line)</label>
+                <textarea id="outfit_enable_list" class="st-chatu8-textarea" rows="10" placeholder="Enter one outfit name per line"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="outfit_enable_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> Check Whether Outfits Exist
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="outfit_enable_selector">Select from Outfit Presets</label>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="outfit_enable_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_refresh" title="Refresh List">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="outfit_enable_add">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+
+            <div id="outfit_enable_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>Check Results</label>
+                <div id="outfit_enable_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 启用通用角色列表子页面 -->
+    <div id="ch-sub-tab-character-common" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Common Character List Presets</h3>
+            <div class="st-chatu8-field">
+                <label for="character_common_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="character_common_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_common_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_update" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_export" title="Export"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_export_all" title="Export All"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_import" title="Import"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_common_delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色列表管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Common Character List</h3>
+            <div class="st-chatu8-field-col">
+                <label for="character_common_list">Character List (one character name per line)</label>
+                <textarea id="character_common_list" class="st-chatu8-textarea" rows="10" placeholder="Enter one character name per line"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_common_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> Check Whether Characters Exist
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="character_common_selector">Select from Character Settings</label>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="character_common_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
+                    <button class="st-chatu8-icon-btn" id="character_common_refresh" title="Refresh List">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="character_common_add">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+
+            <div id="character_common_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>Check Results</label>
+                <div id="character_common_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banana角色管理子页面 -->
+    <div id="ch-sub-tab-banana-character" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Banana Character Presets</h3>
+            <div class="st-chatu8-field">
+                <label for="banana_char_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="banana_char_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="banana_char_new" title="New"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="banana_char_update" title="Save"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="banana_char_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="banana_char_rename" title="Rename"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="banana_char_delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 参数区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>Details</h3>
+            <div class="st-chatu8-field-col">
+                <label for="banana_char_triggers">Trigger Words (separate with "|")</label>
+                <textarea id="banana_char_triggers" class="st-chatu8-textarea" rows="2" placeholder="trigger word 1|trigger word 2"></textarea>
+            </div>
+
+            <div class="st-chatu8-banana-conversation-group">
+                <h4>Conversation</h4>
+                <div class="st-chatu8-banana-conversation-turn">
+                    <div class="st-chatu8-banana-turn-user">
+                        <h5>User</h5>
+                        <textarea id="banana_char_user_text" class="st-chatu8-textarea" rows="3" placeholder="User text..."></textarea>
+                        <div class="st-chatu8-image-preview-container small" id="banana_char_user_image_container">
+                            <img id="banana_char_user_image" src="" style="display:none;">
+                            <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                            <button class="st-chatu8-icon-btn danger top-right" id="banana_char_user_image_remove" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                            <input type="file" id="banana_char_user_image_input" accept="image/*" style="display:none;">
+                        </div>
+                    </div>
+                    <div class="st-chatu8-banana-turn-model">
+                        <h5>Model</h5>
+                        <textarea id="banana_char_model_text" class="st-chatu8-textarea" rows="3" placeholder="Model text..."></textarea>
+                        <div class="st-chatu8-image-preview-container small" id="banana_char_model_image_container">
+                            <img id="banana_char_model_image" src="" style="display:none;">
+                            <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                            <button class="st-chatu8-icon-btn danger top-right" id="banana_char_model_image_remove" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                            <input type="file" id="banana_char_model_image_input" accept="image/*" style="display:none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示词注入模板子页面 -->
+    <div id="ch-sub-tab-injection-templates" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 方案管理 -->
+        <div class="st-chatu8-settings-section" style="margin-bottom: 15px;">
+            <h3><i class="fa-solid fa-folder-tree"></i> Injection Template Preset Management</h3>
+            <div class="st-chatu8-field">
+                <label for="injection_template_preset_id">Current Preset</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="injection_template_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="injection_template_new" title="New Preset"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_update" title="Save Preset"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_save_as" title="Save As"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_rename" title="Rename Preset"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_reset" title="Restore Default Content"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="injection_template_delete" title="Delete Preset"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    “Default Preset,” “Tavern XML Format,” and “Minimal Markdown Card” are built-in system presets and cannot be renamed or deleted. Use {variableName} as placeholders in templates. A line is automatically removed when all of its placeholders are empty.
+                </small>
+            </div>
+        </div>
+        <!-- 模板配置 + 变量工具栏 -->
+        <div style="display: flex; gap: 16px; align-items: stretch; margin-bottom: 15px; flex-wrap: wrap;">
+
+            <!-- 左：4 个模板文本框 -->
+            <div class="st-chatu8-settings-section" style="flex: 1; min-width: 320px; margin-bottom: 0;">
+                <h3><i class="fa-solid fa-sliders"></i> Template Format Settings</h3>
+
+                <div class="st-chatu8-field-col">
+                    <label for="tpl_characterListTemplate">Enabled Character List Item Template</label>
+                    <textarea id="tpl_characterListTemplate" class="st-chatu8-textarea" rows="8" placeholder="Corresponds to {{角色启用列表}} in World Info; rendered once per character"></textarea>
+                </div>
+
+                <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                    <label for="tpl_innerOutfitTemplate">Character-Specific Outfit Template</label>
+                    <textarea id="tpl_innerOutfitTemplate" class="st-chatu8-textarea" rows="5" placeholder="Inserted into the {outfits} placeholder in the template above"></textarea>
+                </div>
+
+                <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                    <label for="tpl_commonCharacterListTemplate">Common Character List Item Template</label>
+                    <textarea id="tpl_commonCharacterListTemplate" class="st-chatu8-textarea" rows="3" placeholder="Corresponds to {{通用角色启用列表}} in World Info"></textarea>
+                </div>
+
+                <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                    <label for="tpl_enableOutfitListTemplate">Common Outfit List Item Template</label>
+                    <textarea id="tpl_enableOutfitListTemplate" class="st-chatu8-textarea" rows="5" placeholder="Corresponds to {{通用服装启用列表}} in World Info"></textarea>
+                </div>
+            </div>
+
+            <!-- 右：变量按钮 -->
+            <div class="st-chatu8-settings-section" style="width: 300px; min-width: 260px; margin-bottom: 0; display: flex; flex-direction: column;">
+                <h3><i class="fa-solid fa-code"></i> Insert Variables</h3>
+                <small style="display: block; margin-bottom: 10px; color: #888; font-size: 0.85em;">
+                    Click to insert at the cursor in the most recently edited template field.
+                </small>
+
+                <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                    <button type="button" class="st-chatu8-btn primary var-tab-btn active" data-tab="character" style="flex: 1;">
+                        <i class="fa-solid fa-user"></i> Character
+                    </button>
+                    <button type="button" class="st-chatu8-btn var-tab-btn" data-tab="outfit" style="flex: 1;">
+                        <i class="fa-solid fa-shirt"></i> Outfit
+                    </button>
+                </div>
+
+                <div id="var-panel-character" class="var-panel" style="display: flex; flex-direction: column; gap: 6px; overflow-y: auto; max-height: 520px;">
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{nameCN}">{nameCN} Chinese Name</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{nameEN}">{nameEN} English Name</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{traits}">{traits} Character Traits</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{facial}">{facial} Facial Features (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{facialBack}">{facialBack} Facial Features (Back)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{upperSFW}">{upperSFW} Upper Body SFW (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{upperSFWBack}">{upperSFWBack} Upper Body SFW (Back)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerSFW}">{lowerSFW} Lower Body SFW (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerSFWBack}">{lowerSFWBack} Lower Body SFW (Back)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{upperNSFW}">{upperNSFW} Upper Body NSFW (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{upperNSFWBack}">{upperNSFWBack} Upper Body NSFW (Back)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerNSFW}">{lowerNSFW} Lower Body NSFW (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerNSFWBack}">{lowerNSFWBack} Lower Body NSFW (Back)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{negative}">{negative} Negative Prompt</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{outfits}">{outfits} Character-Specific Outfit Expansion Point</button>
+                </div>
+
+                <div id="var-panel-outfit" class="var-panel" style="display: none; flex-direction: column; gap: 6px; overflow-y: auto; max-height: 520px;">
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{nameCN}">{nameCN} Chinese Name</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{nameEN}">{nameEN} English Name</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{upperBody}">{upperBody} Upper Body (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{upperBodyBack}">{upperBodyBack} Upper Body (Back)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerBody}">{lowerBody} Lower Body (Front)</button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerBodyBack}">{lowerBodyBack} Lower Body (Back)</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 实时预览 -->
+        <div class="st-chatu8-settings-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h3 style="margin: 0;"><i class="fa-solid fa-eye"></i> Live Preview</h3>
+                <button id="injection_template_refresh_preview" class="st-chatu8-btn primary">
+                    <i class="fa-solid fa-rotate"></i> Refresh
+                </button>
+            </div>
+            <div class="st-chatu8-field-col">
+                <textarea id="tpl_live_preview" class="st-chatu8-textarea" rows="14" readonly placeholder="Shows the current template output with sample data. The second sample character deliberately leaves some fields empty to confirm that empty-line removal works as expected."></textarea>
+            </div>
+        </div>
+    </div>
+</div>
